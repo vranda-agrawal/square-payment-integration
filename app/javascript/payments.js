@@ -1,6 +1,7 @@
 const appId = process.env.APPLICATION_ID;
 const locationId = process.env.LOCATION_ID;
-
+console.log(appId)
+console.log(locationId)
 async function initializeCard(payments) {
   const card = await payments.card();
   await card.attach('#card-container');

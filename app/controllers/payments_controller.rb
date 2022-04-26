@@ -14,12 +14,16 @@ class PaymentsController < ApplicationController
 
   # GET /payments/new
   def new
+    puts "-------------------------------------------------------------------------------------------------------------------------"
+    puts params
     @notice=params[:notice]
     @price=params[:price]
   end
 
   # POST /payments or /payments.json
   def create
+    puts "-------------------------------------------------------------------------------------------------------------------------"
+    binding.pry
     @payment=create_payment(params[:nonce],params[:price].to_i)
     respond_to do |format|
       if @payment.success?
@@ -66,7 +70,7 @@ class PaymentsController < ApplicationController
         idempotency_key: SecureRandom.uuid(),
         amount_money: {
           amount: price,
-          currency: "JPY"
+          currency: "USD"
         },
         location_id: location_id
       }
